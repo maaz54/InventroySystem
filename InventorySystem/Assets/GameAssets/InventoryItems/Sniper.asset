@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b5edf2fc504b847a1241b2c1afcd83, type: 3}
   m_Name: Sniper
   m_EditorClassIdentifier: 
-  ItemID: 10
-  itemName: Sniper Rifle
-  itemSprite: {fileID: 21300000, guid: 47eaeb16d85eb13438a27a46dfe0eb93, type: 3}
-  itemType: 1
-  weight: 8
+  <ItemID>k__BackingField: 10
+  <itemName>k__BackingField: Gun
+  <itemSprite>k__BackingField: {fileID: 21300000, guid: 47eaeb16d85eb13438a27a46dfe0eb93, type: 3}
+  <itemType>k__BackingField: 0
+  <weight>k__BackingField: 0
   GunType: 3
   bulletType: {fileID: 11400000, guid: e2c70bdda5aec20448ff773d0eb9959f, type: 2}

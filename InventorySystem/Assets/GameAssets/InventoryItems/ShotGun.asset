@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b5edf2fc504b847a1241b2c1afcd83, type: 3}
   m_Name: ShotGun
   m_EditorClassIdentifier: 
-  ItemID: 8
-  itemName: Shot Gun
-  itemSprite: {fileID: 21300000, guid: e060ca6566bec204d93c91a14a59ecf0, type: 3}
-  itemType: 1
-  weight: 5
-  GunType: 2
+  <ItemID>k__BackingField: 8
+  <itemName>k__BackingField: Gun
+  <itemSprite>k__BackingField: {fileID: 21300000, guid: e060ca6566bec204d93c91a14a59ecf0, type: 3}
+  <itemType>k__BackingField: 0
+  <weight>k__BackingField: 0
+  GunType: 0
   bulletType: {fileID: 11400000, guid: ed131d0074c53aa4a93a9c08c5d7b3dc, type: 2}

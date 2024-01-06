@@ -8,12 +8,11 @@ namespace InventorySystem
     public class Item
     {
         [field: SerializeField] public int Quantity { get; set; }
-        [SerializeField] ItemData itemData;
-        public ItemData ItemData => itemData;
+        [field: SerializeField] public ItemData ItemData { get; set; }
 
         public Item(ItemData itemData, int Quantity)
         {
-            this.itemData = itemData;
+            this.ItemData = itemData;
             this.Quantity = Quantity;
         }
     }

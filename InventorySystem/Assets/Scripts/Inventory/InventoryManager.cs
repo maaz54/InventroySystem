@@ -1,21 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using ObjectPool;
+using Palmmedia.ReportGenerator.Core.Common;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace InventorySystem
 {
     public class InventoryManager : MonoBehaviour
     {
+        private const string saveFileName = "InventoryData.json";
         [SerializeField] InventoryUI inventoryUI;
         [SerializeField] ObjectPooler objectPooler;
-        [SerializeField] private List<Item> items = new List<Item>();
+        public List<Item> items;
 
         private void Start()
         {
             inventoryUI.OnClearButton += Clear;
             inventoryUI.OnMergedButton += Merge;
             inventoryUI.OnRemoveItemButton += RemoveItem;
+            inventoryUI.OnSaveInventoryButton += SaveInventory;
+            inventoryUI.OnLoadInventoryButton += LoadInventory;
             inventoryUI.Initialize(objectPooler);
         }
 
@@ -48,22 +53,52 @@ namespace InventorySystem
 
         public void RemoveItem(Item item)
         {
-            // if (item.Quantity > 1)
-            // {
-            //     items[items.IndexOf(item)].Quantity--;
-            //     inventoryUI.UpdateItem(item);
-            // }
-            // else
-            // {
-            items.Remove(item);
-            inventoryUI.RemoveItem(item);
-            // }
+            if (item.Quantity > 1)
+            {
+                int index = items.IndexOf(item);
+                items[index].Quantity--;
+                inventoryUI.UpdateItem(items[index]);
+            }
+            else
+            {
+                items.Remove(item);
+                inventoryUI.RemoveItem(item);
+            }
         }
 
         public void Clear()
         {
             items.Clear();
             inventoryUI.ClearAllItem();
+        }
+
+
+
+        private void SaveInventory()
+        {
+            InventoryData inventoryData = new()
+            {
+                items = items
+            };
+            var json = JsonUtility.ToJson(inventoryData);
+            System.IO.File.WriteAllText(saveFileName, json);
+        }
+
+        private void LoadInventory()
+        {
+            if (System.IO.File.Exists(saveFileName))
+            {
+                string json = System.IO.File.ReadAllText(saveFileName);
+                InventoryData inventoryData = JsonUtility.FromJson<InventoryData>(json);
+                items = inventoryData.items;
+                inventoryUI.ReArrangeItems(items);
+            }
+        }
+
+        [System.Serializable]
+        public class InventoryData
+        {
+            public List<Item> items = new();
         }
     }
 }

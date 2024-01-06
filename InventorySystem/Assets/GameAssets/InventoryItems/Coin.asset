@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b69420ddf357e3c4c90fd8b62f4dbf7b, type: 3}
   m_Name: Coin
   m_EditorClassIdentifier: 
-  ItemID: 4
-  itemName: Coin
-  itemSprite: {fileID: 21300000, guid: ff1561245a5b1e24ab87269b1e42a25a, type: 3}
-  itemType: 2
-  weight: 1
+  <ItemID>k__BackingField: 4
+  <itemName>k__BackingField: Adad
+  <itemSprite>k__BackingField: {fileID: 21300000, guid: ff1561245a5b1e24ab87269b1e42a25a, type: 3}
+  <itemType>k__BackingField: 0
+  <weight>k__BackingField: 0

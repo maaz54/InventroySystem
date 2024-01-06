@@ -14,8 +14,12 @@ namespace InventorySystem
         [SerializeField] List<ItemSlot> itemSlots;
         [SerializeField] Button clearButton;
         [SerializeField] Button mergedButton;
+        [SerializeField] Button saveButton;
+        [SerializeField] Button LoadButton;
         public Action OnClearButton;
         public Action OnMergedButton;
+        public Action OnSaveInventoryButton;
+        public Action OnLoadInventoryButton;
         public Action<Item> OnRemoveItemButton;
         IObjectPooler objectPooler;
 
@@ -24,6 +28,18 @@ namespace InventorySystem
             this.objectPooler = objectPooler;
             clearButton.onClick.AddListener(OnClearButtonClicked);
             mergedButton.onClick.AddListener(OnMergedButtonClicked);
+            saveButton.onClick.AddListener(SaveInventoryButton);
+            LoadButton.onClick.AddListener(LoadInventoryButton);
+        }
+
+        public void SaveInventoryButton()
+        {
+            OnSaveInventoryButton?.Invoke();
+        }
+
+        public void LoadInventoryButton()
+        {
+            OnLoadInventoryButton?.Invoke();
         }
 
         public void AddItem(Item item)
