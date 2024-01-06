@@ -11,6 +11,7 @@ namespace InventorySystem
     {
         [SerializeField] ItemSlot itemSlotPrefab;
         [SerializeField] RectTransform itemSlotHolder;
+        [SerializeField] ItemDetailPopup itemDetailPopup;
         [SerializeField] List<ItemSlot> itemSlots;
         [SerializeField] Button clearButton;
         [SerializeField] Button mergedButton;
@@ -44,11 +45,16 @@ namespace InventorySystem
 
         public void AddItem(Item item)
         {
-            // ItemSlot itemSlot = Instantiate(itemSlotPrefab, itemSlotHolder);
             ItemSlot itemSlot = objectPooler.Pool<ItemSlot>(itemSlotPrefab, itemSlotHolder);
             itemSlot.SetItem(item);
             itemSlot.OnCrossButton = OnItemRemoveClicked;
+            itemSlot.OnItemButton = OnItemCLick;
             itemSlots.Add(itemSlot);
+        }
+
+        private void OnItemCLick(Item item)
+        {
+            itemDetailPopup.EnablePopup(item);
         }
 
         public void RemoveItem(Item item)

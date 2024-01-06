@@ -15,7 +15,7 @@ MonoBehaviour:
   <ItemID>k__BackingField: 5
   <itemName>k__BackingField: Gun
   <itemSprite>k__BackingField: {fileID: 21300000, guid: 23728be40c1012e4c8e272fd029fe9ba, type: 3}
-  <itemType>k__BackingField: 0
-  <weight>k__BackingField: 0
+  <itemType>k__BackingField: 1
+  <weight>k__BackingField: 5
   GunType: 0
   bulletType: {fileID: 11400000, guid: dcb730ca4cd614d4d8dcf826dddd8d8a, type: 2}

@@ -16,5 +16,5 @@ MonoBehaviour:
   <itemName>k__BackingField: Bullet
   <itemSprite>k__BackingField: {fileID: 21300000, guid: 9dfafbf045d9f2447aae72e3c58bd8d2, type: 3}
   <itemType>k__BackingField: 0
-  <weight>k__BackingField: 0
+  <weight>k__BackingField: 5
   bulletType: 0

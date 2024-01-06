@@ -19,6 +19,7 @@ namespace InventorySystem
         Item item;
         public Item GetItem => item;
         public Action<Item> OnCrossButton;
+        public Action<Item> OnItemButton;
 
         public void SetItem(Item item)
         {
@@ -26,6 +27,8 @@ namespace InventorySystem
             UpdateVisuals();
             crossButton.onClick.RemoveAllListeners();
             crossButton.onClick.AddListener(OnCrossButtonClick);
+            itemButton.onClick.RemoveAllListeners();
+            itemButton.onClick.AddListener(OnItemButtonClick);
         }
 
         public void UpdateVisuals()
@@ -37,6 +40,11 @@ namespace InventorySystem
         private void OnCrossButtonClick()
         {
             OnCrossButton?.Invoke(GetItem);
+        }
+
+        private void OnItemButtonClick()
+        {
+            OnItemButton?.Invoke(GetItem);
         }
     }
 }
