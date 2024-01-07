@@ -4,29 +4,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using ObjectPool.Interface;
+using Zenject;
+using InventorySystem.Interface;
 
 namespace InventorySystem
 {
-    public class InventoryUI : MonoBehaviour
+    public class InventoryUI : MonoBehaviour, IInventoryUI
     {
+        IItemDetailPopup itemDetailPopup;
         [SerializeField] ItemSlot itemSlotPrefab;
         [SerializeField] RectTransform itemSlotHolder;
-        [SerializeField] ItemDetailPopup itemDetailPopup;
         [SerializeField] List<ItemSlot> itemSlots;
         [SerializeField] Button clearButton;
         [SerializeField] Button mergedButton;
         [SerializeField] Button saveButton;
         [SerializeField] Button LoadButton;
-        public Action OnClearButton;
-        public Action OnMergedButton;
-        public Action OnSaveInventoryButton;
-        public Action OnLoadInventoryButton;
-        public Action<Item> OnRemoveItemButton;
+        public Action OnClearButton { get; set; }
+        public Action OnMergedButton { get; set; }
+        public Action OnSaveInventoryButton { get; set; }
+        public Action OnLoadInventoryButton { get; set; }
+        public Action<Item> OnRemoveItemButton { get; set; }
         IObjectPooler objectPooler;
 
-        public void Initialize(IObjectPooler objectPooler)
+        [Inject]
+        private void Constructor(IObjectPooler objectPooler, IItemDetailPopup itemDetailPopup)
         {
             this.objectPooler = objectPooler;
+            this.itemDetailPopup = itemDetailPopup;
+            Initialize();
+        }
+
+        void Initialize()
+        {
             clearButton.onClick.AddListener(OnClearButtonClicked);
             mergedButton.onClick.AddListener(OnMergedButtonClicked);
             saveButton.onClick.AddListener(SaveInventoryButton);

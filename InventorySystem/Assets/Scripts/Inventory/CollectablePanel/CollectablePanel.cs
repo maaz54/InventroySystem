@@ -3,14 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using InventorySystem.Interface;
 
 namespace InventorySystem
 {
-    public class CollectablePanel : MonoBehaviour
+    public class CollectablePanel : MonoBehaviour, ICollectablePanel
     {
         [SerializeField] RectTransform slotHolder;
         [SerializeField] ItemCollectable[] itemCollectables;
-        public Action<Item> OnItemCollect;
+        public Action<Item> OnItemCollect { get; set; }
 
         private void Start()
         {

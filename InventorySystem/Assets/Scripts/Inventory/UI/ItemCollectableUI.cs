@@ -22,7 +22,7 @@ namespace InventorySystem
             itemImage.sprite = item.ItemData.itemSprite;
         }
 
-        public void OnItemClick()
+        private void OnItemClick()
         {
             CollectItem();
         }

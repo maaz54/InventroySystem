@@ -4,10 +4,11 @@ using InventorySystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using InventorySystem.Interface;
 
 namespace InventorySystem
 {
-    public class ItemDetailPopup : MonoBehaviour
+    public class ItemDetailPopup : MonoBehaviour, IItemDetailPopup
     {
         [SerializeField] TextMeshProUGUI itemNameText;
         [SerializeField] TextMeshProUGUI itemTypeText;

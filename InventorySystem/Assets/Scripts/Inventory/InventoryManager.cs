@@ -1,27 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
-using ObjectPool;
+using ObjectPool.Interface;
 using Palmmedia.ReportGenerator.Core.Common;
 using Unity.VisualScripting;
 using UnityEngine;
+using InventorySystem.Interface;
+using Zenject;
 
 namespace InventorySystem
 {
-    public class InventoryManager : MonoBehaviour
+    public class InventoryManager : MonoBehaviour, IInventoryManager
     {
         private const string saveFileName = "InventoryData.json";
-        [SerializeField] InventoryUI inventoryUI;
-        [SerializeField] ObjectPooler objectPooler;
-        public List<Item> items;
+        IInventoryUI inventoryUI;
+        IObjectPooler objectPooler;
+        public List<Item> items { get; set; }
+
+        [Inject]
+        private void Constructor(IInventoryUI inventoryUI, IObjectPooler objectPooler)
+        {
+            this.inventoryUI = inventoryUI;
+            this.objectPooler = objectPooler;
+        }
 
         private void Start()
         {
+            items = new();
             inventoryUI.OnClearButton += Clear;
             inventoryUI.OnMergedButton += Merge;
             inventoryUI.OnRemoveItemButton += RemoveItem;
             inventoryUI.OnSaveInventoryButton += SaveInventory;
             inventoryUI.OnLoadInventoryButton += LoadInventory;
-            inventoryUI.Initialize(objectPooler);
         }
 
         public void AddItem(Item item)
@@ -31,7 +40,7 @@ namespace InventorySystem
             items.Add(newItem);
         }
 
-        public void Merge()
+        private void Merge()
         {
             List<Item> mergedItemList = new();
             foreach (var item in items)
@@ -51,7 +60,7 @@ namespace InventorySystem
             inventoryUI.ReArrangeItems(items);
         }
 
-        public void RemoveItem(Item item)
+        private void RemoveItem(Item item)
         {
             if (item.Quantity > 1)
             {
@@ -66,7 +75,7 @@ namespace InventorySystem
             }
         }
 
-        public void Clear()
+        private void Clear()
         {
             items.Clear();
             inventoryUI.ClearAllItem();
