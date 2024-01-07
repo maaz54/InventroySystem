@@ -9,6 +9,9 @@ using ObjectPool.Interface;
 
 namespace InventorySystem.Installer
 {
+    /// <summary>
+    /// Installer for setting up dependency injections related to the inventory system.
+    /// </summary>
     public class InventoryDepandancyInstaller : MonoInstaller<InventoryDepandancyInstaller>
     {
         [SerializeField] CollectablePanel collectablePanel;
@@ -17,6 +20,9 @@ namespace InventorySystem.Installer
         [SerializeField] ItemDetailPopup itemDetailPopup;
         [SerializeField] ObjectPooler objectPooler;
 
+        /// <summary>
+        /// Bind interfaces to their corresponding instances as singletons.
+        /// </summary>
         public override void InstallBindings()
         {
             Container.Bind<ICollectablePanel>().FromInstance(collectablePanel).AsSingle();

@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace InventorySystem
 {
+    /// <summary>
+    /// Enumerates different types of items.
+    /// </summary>
     public enum ItemType
     {
         Consumable,

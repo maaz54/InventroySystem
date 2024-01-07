@@ -9,13 +9,35 @@ using Zenject;
 
 namespace InventorySystem
 {
+    /// <summary>
+    /// Manages the inventory system.
+    /// </summary>
     public class InventoryManager : MonoBehaviour, IInventoryManager
     {
+        /// <summary>
+        /// The filename for saving and loading inventory data.
+        /// </summary>
         private const string saveFileName = "InventoryData.json";
+
+        /// <summary>
+        /// Reference to the inventory user interface
+        /// </summary>
         IInventoryUI inventoryUI;
+
+        /// <summary>
+        /// Reference to the object pooler for efficient item management.
+        /// </summary>
         IObjectPooler objectPooler;
+
+        /// <summary>
+        /// The list of items in the inventory
+        /// </summary>
         public List<Item> items { get; set; }
 
+
+        /// <summary>
+        /// Constructor using dependency injection to initialize.
+        /// </summary>
         [Inject]
         private void Constructor(IInventoryUI inventoryUI, IObjectPooler objectPooler)
         {
@@ -33,6 +55,10 @@ namespace InventorySystem
             inventoryUI.OnLoadInventoryButton += LoadInventory;
         }
 
+
+        /// <summary>
+        /// Adds a new item to the inventory.
+        /// </summary>
         public void AddItem(Item item)
         {
             Item newItem = new(item.ItemData, item.Quantity);
@@ -40,6 +66,10 @@ namespace InventorySystem
             items.Add(newItem);
         }
 
+
+        /// <summary>
+        /// Merges duplicate items in the inventory, combining their quantities.
+        /// </summary>
         private void Merge()
         {
             List<Item> mergedItemList = new();
@@ -60,6 +90,10 @@ namespace InventorySystem
             inventoryUI.ReArrangeItems(items);
         }
 
+
+        /// <summary>
+        /// Removes a specified item from the inventory.
+        /// </summary>
         private void RemoveItem(Item item)
         {
             if (item.Quantity > 1)
@@ -75,6 +109,10 @@ namespace InventorySystem
             }
         }
 
+
+        /// <summary>
+        /// Clears all items from the inventory.
+        /// </summary>
         private void Clear()
         {
             items.Clear();
@@ -82,7 +120,9 @@ namespace InventorySystem
         }
 
 
-
+        /// <summary>
+        /// Saves the current inventory data to a JSON file.
+        /// </summary>
         private void SaveInventory()
         {
             InventoryData inventoryData = new()
@@ -93,6 +133,10 @@ namespace InventorySystem
             System.IO.File.WriteAllText(saveFileName, json);
         }
 
+
+        /// <summary>
+        /// Loads inventory data from a JSON file and updates the inventory.
+        /// </summary>
         private void LoadInventory()
         {
             if (System.IO.File.Exists(saveFileName))
@@ -104,6 +148,10 @@ namespace InventorySystem
             }
         }
 
+
+        /// <summary>
+        /// Serializable class to represent the structure of inventory data.
+        /// </summary>
         [System.Serializable]
         public class InventoryData
         {
