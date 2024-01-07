@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 50CaliberBullet
   m_EditorClassIdentifier: 
   <ItemID>k__BackingField: 3
-  <itemName>k__BackingField: Bullet
+  <itemName>k__BackingField: 50 Caliber Bullet
   <itemSprite>k__BackingField: {fileID: 21300000, guid: 9dfafbf045d9f2447aae72e3c58bd8d2, type: 3}
   <itemType>k__BackingField: 0
   <weight>k__BackingField: 5

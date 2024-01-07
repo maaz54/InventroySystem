@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShotGun
   m_EditorClassIdentifier: 
   <ItemID>k__BackingField: 8
-  <itemName>k__BackingField: Gun
+  <itemName>k__BackingField: Shot Gun
   <itemSprite>k__BackingField: {fileID: 21300000, guid: e060ca6566bec204d93c91a14a59ecf0, type: 3}
   <itemType>k__BackingField: 1
   <weight>k__BackingField: 8
